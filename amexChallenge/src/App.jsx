@@ -23,10 +23,19 @@ function App() {
     setIsSelected(true)
   }
 
+  const handleInput = (e) => {
+    setSelectedAmount(e.target.value)
+    setIsSelected(true)
+  }
+
   const handleSubmit = () => {
-    setBalance(selectedAmount)
-    setIsSelected(false)
-    setSelectedAmount(0)
+    if(selectedAmount > 200) {
+      alert('Invalid Amount')
+    } else {
+      setBalance(selectedAmount)
+      setIsSelected(false)
+      setSelectedAmount(0)
+    }
   }
 
   return (
@@ -61,6 +70,15 @@ function App() {
             ${options}
           </button>
         ))}
+
+        {/* Bonus */}
+        <input 
+        style={{width: '100px'}}
+        placeholder='Enter Amount'
+        maxLength='3'
+        type='number'
+        onChange={handleInput}>
+        </input>
       </div>
       { isSelected ? <button onClick={handleSubmit}>Submit</button> 
       : 
