@@ -17,9 +17,6 @@ function App() {
   const maxValue = 200; 
 
   const amountOptions = [15, 25, 50, 100, 200]
-  // .filter(
-  //   (options) => options + selectedAmount <= maxValue
-  // )
 
   const handleChange = (options) => {
     setSelectedAmount(options)
@@ -28,6 +25,8 @@ function App() {
 
   const handleSubmit = () => {
     setBalance(selectedAmount)
+    setIsSelected(false)
+    setSelectedAmount(0)
   }
 
   return (
@@ -53,7 +52,11 @@ function App() {
       <div style={{ display: "flex", padding: '12px 0', gap: 8 }}>
         {amountOptions.map((options) => (
           <button
-            style={{backgroundColor: selectedAmount === options ? "#ccc" : "#fff"}}
+            style={{
+              border: '1px solid grey',
+              borderRadius: '2px',
+              padding: '5px',
+              backgroundColor: selectedAmount === options ? "#ccc" : "#fff"}}
            onClick={() => handleChange(options)}>
             ${options}
           </button>
